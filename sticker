@@ -2,7 +2,7 @@
 # Convert mkv files to webp format
 
 #delete most recent webp file
-rm recent.webp
+rm recent.webp >/dev/null 2>&1
 
 type youtube-dl >/dev/null 2>&1 || { echo >&2 "This script needs youtube-dl installed"; exit;}
 type ffmpeg >/dev/null 2>&1 || { echo >&2 "This script needs ffmpeg installed"; exit; }
@@ -16,11 +16,11 @@ temp_file='temp.mp4'
 webp_file='temp.webp'
 
 #{
-if [[ "$1" =~ ^https://.* ]]
+if [[ "$1" =~ ^https://.*youtube.com/.* ]]
 then
   echo "youtube video"
   youtube-dl -f 'worstvideo[ext=mp4]' -o 'temp.%(ext)s' --external-downloader ffmpeg \
-    --external-downloader-args "-ss $2 -to $3" "$1"
+    --external-downloader-args "-ss $2 -to $3" "$1" >/dev/null 2>&1
 
   ffmpeg -i "$temp_file" -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 500:500 "$webp_file"  >/dev/null 2>&1
 
