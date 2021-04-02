@@ -5,7 +5,7 @@
 ## Prerequisites
 * ffmpeg version 4.1 or above
 * youtube-dl (if you face any problem try installing a recent version)
-* adb (android-data-bridge) 
+* adb (android-debug-bridge) 
 * Installation commands are given [here](https://github.com/HARSH-SHETH/my_scripts/new/master/sticker_script/install.md)
 
 
