@@ -22,12 +22,12 @@ then
   youtube-dl -f 'worstvideo[ext=mp4]' -o 'temp.%(ext)s' --external-downloader ffmpeg \
     --external-downloader-args "-ss $2 -to $3" "$1" >/dev/null 2>&1
 
-  ffmpeg -i "$temp_file" -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 500:500 "$webp_file"  >/dev/null 2>&1
+  ffmpeg -y -i "$temp_file" -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 500:500 "$webp_file"  >/dev/null 2>&1
 
 else
   echo "normal file"
-  ffmpeg -i "$input_file" -ss "$2" -to "$3" -codec copy "$temp_file" >/dev/null 2>&1
-  ffmpeg -i "$temp_file" -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 500:500 "$webp_file" >/dev/null 2>&1
+  ffmpeg -y -i "$input_file" -ss "$2" -to "$3" -codec copy "$temp_file" >/dev/null 2>&1
+  ffmpeg -y -i "$temp_file" -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 500:500 "$webp_file" >/dev/null 2>&1
 fi
 #}
 
