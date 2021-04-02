@@ -14,6 +14,7 @@
 
 ## ADB
 > sudo apt update 
+> 
 > sudo apt install android-tools-adb android-tools-fastboot
 
 * After Installing adb enable usb debugging on your android device. See [here](https://wiki.archlinux.org/index.php/Android_Debug_Bridge#Connect_device)
